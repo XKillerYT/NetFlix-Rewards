@@ -298,17 +298,17 @@ client.on('message', message => {
         ${member}
         [❖═════ NetFlix Commands ═══════❖]
         
-        『-clear / لحذف الشات 』
-        『-mc / لقفل الشات  』
-        『-unmc / لفتح الشات 』
-        『-bc / لارسال رسالة لجميع اعضاء السيرفر 』
-        『-kick / لطرد شخص من الدسكورد 』
-        『-ban / لاعطاء شخص باند من الدسكورد 』
-        『-ct / لانشاء روم كتابي 』
-        『-cv / لانشاء روم صوتي 』
-        『-temp on / لتشغيل الرومات المؤقتة 』
-        『-temp off / لاطفاء الرومات المؤقتة 』
-        『-c-channel / لانشاء روم يكون بعدد اعضاء السيرفر 』
+        『=clear / لحذف الشات 』
+        『=mc / لقفل الشات  』
+        『=unmc / لفتح الشات 』
+        『=bc / لارسال رسالة لجميع اعضاء السيرفر 』
+        『=kick / لطرد شخص من الدسكورد 』
+        『=ban / لاعطاء شخص باند من الدسكورد 』
+        『=ct / لانشاء روم كتابي 』
+        『=cv / لانشاء روم صوتي 』
+        『=temp on / لتشغيل الرومات المؤقتة 』
+        『=temp off / لاطفاء الرومات المؤقتة 』
+        『=c-channel / لانشاء روم يكون بعدد اعضاء السيرفر 』
 
         
          **`);
@@ -338,10 +338,10 @@ client.on("message", (message) => {
 
 if (message.content.toLowerCase().startsWith(prefix + `new`)) {
     const reason = message.content.split(" ").slice(1).join(" ");
-    if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
+    if (!message.guild.roles.exists("name", "-, NetFlixSupport")) return message.channel.send(`This server doesn't have a \`-, NetFlixSupport\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
     if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
     message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
-        let role = message.guild.roles.find("name", "Support Team");
+        let role = message.guild.roles.find("name", "-, NetFlixSupport");
         let role2 = message.guild.roles.find("name", "@everyone");
         c.overwritePermissions(role, {
             SEND_MESSAGES: true,
@@ -358,7 +358,7 @@ if (message.content.toLowerCase().startsWith(prefix + `new`)) {
         message.channel.send(`:white_check_mark: Your ticket has been created, #${c.name}.`);
         const embed = new Discord.RichEmbed()
             .setColor('#000000').setColor('#36393e')
-        .addField(`Hey ${message.author.username}!`, `Please try explain why you opened this ticket with as much detail as possible. Our **Support Team** will be here soon to help.`)
+        .addField(`Hey ${message.author.username}!`, `Please try explain why you opened this ticket with as much detail as possible. Our **-, NetFlixSupport** will be here soon to help.`)
         .setTimestamp();
         c.send({ embed: embed });
     }).catch(console.error);
@@ -368,7 +368,7 @@ if (message.content.toLowerCase().startsWith(prefix + `close`)) {
 
     message.channel.send(`Are you sure? Once confirmed, you cannot reverse this action!\nTo confirm, type \`-confirm\`. This will time out in 10 seconds and be cancelled.`)
     .then((m) => {
-      message.channel.awaitMessages(response => response.content === '-confirm', {
+      message.channel.awaitMessages(response => response.content === '=confirm', {
         max: 1,
         time: 10000,
         errors: ['time'],
