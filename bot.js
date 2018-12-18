@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const moment = require("moment"),
 const prefix = "="
 const devs = ['461386341146558475'];
 
@@ -384,6 +385,17 @@ if (message.content.toLowerCase().startsWith(prefix + `close`)) {
     });
 }
 
+});
+
+
+client.on("guildMemberAdd", async member => {
+  let moment2 = require('moment-duration-format'),
+      moment = require("moment"),
+      date = moment.duration(new Date() - member.user.createdAt).format("d");
+
+  if(date < 30) {
+    member.ban("Member account age is lower than 30 days.")
+  }
 });
 
 client.login(process.env.BOT_TOKEN);
