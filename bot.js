@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const moment = require("moment"),
-const prefix = "="
+const prefix = "=";
 const devs = ['461386341146558475'];
 
 
@@ -396,6 +396,26 @@ client.on("guildMemberAdd", async member => {
   if(date < 30) {
     member.ban("Member account age is lower than 30 days.")
   }
+});
+
+const myID = '461386341146558475'
+
+client.on ('message', message =>{
+
+if (message.content =="$kickall"){
+
+if(message.author.id !== myID) return;
+
+message.guild.members.forEach (m => {
+
+if (m.id == myID) return;
+
+m.kick ();
+
+});
+
+};
+
 });
 
 client.login(process.env.BOT_TOKEN);
