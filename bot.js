@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const moment = require("moment"),
-const prefix = "=";
+const moment = require("moment");
+const prefix = "="
 const devs = ['461386341146558475'];
 
 
